@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+
+<script>
+    const form = document.getElementById('surge-form');
+
+    form.addEventListener('submit', (evt) => {
+        evt.preventDefault();
+        const formData = new FormData(form);
+        const params = new URLSearchParams(formData);
+        console.log(params.toString());
+    });
+</script>
+
+<style>
+    .info span{
+        font-weight: 1000;
+    }
+</style>
+
+<Div>
+    <form id="surge-form" method="GET">
+        <!-- {% csrf_token %} -->
+        <label for="your_name">Input: </label>
+        <input type="text" name="indexInput" value='{{input}}'>
+
+        <select id="intensityLevel" name="intensityLevel">
+            <option value="weak">weak</option>
+            <option value="mid">mid</option>
+            <option value="extreme">extreme</option>
+        </select>
+
+        <input type="submit" value="OK">
+    </form>
+    {% if success %}
+    <p class="info">
+        Rolled: <span>{{data.rolled}}</span>
+    </p>
+    <p class="info">
+        Effect: <span>{{data.effect}}</span>
+    </p>
+    <p class="info">
+        Intensity: <span>{{data.intensity}}</span>
+    </p>
+    {% endif %}
+
+</Div>
+
+
+
+
+{% endblock %}
